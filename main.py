@@ -3,11 +3,18 @@ from sys import exit
 from pygame import *
 import os
 
+from pygads import *
+
 class Main:
     
-    def __init__(self) -> None:#初始化调用函数
+    def init(self) -> None:#初始化调用函数
         def quit(event):self.running=False
-        self.call={QUIT:[quit,]}#在下面向call中添加事件类型：调用函数键值对，来使该函数在Update中正确调用
+        self.call={QUIT:[quit,],
+                   KEYDOWN:[],
+                   TEXTINPUT:[],
+                   MOUSEBUTTONDOWN:[],
+                   MOUSEBUTTONUP:[],
+                   MOUSEMOTION:[]}#向call中添加事件类型：调用函数键值对，来使该函数在Update中正确调用
         
         pass
 
@@ -23,12 +30,12 @@ class Main:
         self.screen.fill(self.bgcolor)
         pass
 
-    def Update(self):#更新函数。处理事件。无需更改，添加处理事件的函数请到__init__添加，非事件处理函数请到Pre和After中添加。
+    def Update(self):#更新函数。处理事件。无需更改，添加处理事件的函数请到init添加，非事件处理函数请到Pre和After中添加。
         for event in pygame.event.get():
             for func in self.call.get(event.type,[]):
                 func(event)
 
-    def AfterUpdate(self):#更新后函数。向这里添加处理事件之后应该调用的函数。
+    def AfterUpdate(self):#更新后函数。向这里添加处理事件之后应该调用的函数。（如渲染屏幕）
         self.printfps()
         pass
     
@@ -36,7 +43,7 @@ class Main:
         pass
 
 
-    def Init(self):#初始化pygame和其他函数。
+    def __init__(self):#初始化pygame和其他函数。
         self.displaysize = (640,480)
         self.fpslimit = -1
         pygame.init()
@@ -67,7 +74,7 @@ class Main:
 
 
     def main(self):#主函数
-        self.Init()
+        self.init()
         self.Run()
         self.Del()
 
