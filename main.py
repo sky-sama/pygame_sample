@@ -49,7 +49,7 @@ class Main:
         pygame.init()
         #screen = pygame.display.set_mode((640, 480),pygame.RESIZABLE)
         self.screen = pygame.display.set_mode(self.displaysize)
-        pygame.display.set_caption("apofai_player")
+        pygame.display.set_caption("your title here")
         self.clock = pygame.time.Clock()
         self.msyh24 = pygame.font.Font('msyh.ttc', 24)
         self.msyh10 = pygame.font.Font('msyh.ttc', 10)
