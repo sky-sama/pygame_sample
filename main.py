@@ -6,6 +6,11 @@ import os
 from pygads import *
 
 class Main:
+    def bindevents(self,func,events):
+        for event in events:
+            if event not in self.call:
+                self.call[event] = []
+            self.call[event].append(func)
     
     def init(self) -> None:#初始化调用函数
         def quit(event):self.running=False
