@@ -30,6 +30,9 @@ class Button:
             if self.clicked and self.rect.collidepoint(event.pos):
                 self.callback()
             self.clicked=False
+    
+    def get_events(self):
+        return [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]
 
 class DropDown:
     '''本代码部分由AI生成。实现了基本的下拉框逻辑。
@@ -71,6 +74,9 @@ class DropDown:
                         self.open = False
                         return True
         return False
+    
+    def get_events(self):
+        return [pygame.MOUSEBUTTONDOWN]
 
 class TextInput:
     '''本代码部分由AI生成。实现了基本的文本框逻辑。去选中时调用callback，输入为self。
@@ -200,3 +206,6 @@ class TextInput:
         self.text = self.text[:start] + self.text[end:]
         self.cursor_position = start
         self.selection_start = start
+        
+    def get_events(self):
+        return [pygame.KEYDOWN, pygame.TEXTINPUT, pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]
